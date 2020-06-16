@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity=
-    "sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="../../asset/css/style-compagnies.css">
-    <title>EasyTrip</title>
-</head>
-<body>
 
-    <img class="img-home" src="../../asset/img/img-home.jpg">
+ <?php
 
-    <?php
-        include '../partials/header.php';
-    ?>
+ $destination = new Manager($db);
+ echo '<br>';
+     $test =$destination->getOperatorTour(1);
+  
 
+?> 
     <div class="text-compagnies">
         <h1>Laissez parler le voyageur qui est en vous</h1>
         <p>Découvrez nos compagnies les plus populaires</p>
@@ -26,12 +16,12 @@
     <div class="container-cards">
     <?php  for ($i=0; $i <6; $i++):?>
 
-        <div class="card style="width: 20rem;">
-            <img src="../../asset/img/11404_800x480.jpg" class="card-img-top">
+        <div class="card text-center " style="width: 20rem;">
+            <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title"><?=$test->getName()?></h5>
                 <p class="card-text">Some quick example text to build.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>  
+                <a href="<?=$test->getLink()?>" class="btn btn-primary">Go somewhere</a>  
             </div>
         </div>
         <?php endfor ;?>
