@@ -79,3 +79,10 @@
   display: flex;
   justify-content: center;
 }
+
+/*************** ADMIN ****************/
+
+.admin-link {
+  display: flex;
+  justify-content: center;
+}

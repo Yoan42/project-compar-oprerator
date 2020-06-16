@@ -4,7 +4,7 @@
     Trouvez votre coin de paradis avec
     <br>
     <br>
-    <img class="logo" src="../../asset/img/logo.png">
+    <img class="logo" src="./asset/img/logo.png">
 </h1>
 
 </div>

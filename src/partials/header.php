@@ -8,17 +8,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">            
-                            <form method="GET" class="newsletter__form" >
+                            <form method="GET"  >
                                 <button class="btn btn-color" value="" name="Compagnies">Nos compagnies</button>
                              </form> <span class="sr-only">(current)</span>
                     </li>
                     <li class="nav-item active">
-                            <form method="GET" class="newsletter__form" >
+                            <form method="GET" >
                                 <button class="btn btn-color" value="" name="Destination">Nos destinations</button>
                              </form> <span class="sr-only">(current)</span>
                     </li>
                     <li class="nav-item active">
-                            <form method="GET" class="newsletter__form" >
+                            <form method="GET" >
                             <a class="nav-link" href="../../admin/index.php">
                                 <button class="btn btn-color" value="" name="connexion">Connexion</button>
                             </form> <span class="sr-only">(current)</span>

@@ -14,4 +14,4 @@
 </head>
 <body>
 
-    <img class="img-home" src="asset/img/img-home.jpg">
+    <img class="img-home" src="./asset/img/img-home.jpg">
