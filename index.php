@@ -4,7 +4,7 @@
 // connexion à la DB
   require './controler/DB-connexion.php';
 // Autoloader.
-  include './controler/autoloader.php';
+  include 'controler/autoloader.php';
 
 
 if (isset($_GET['admin'])) {

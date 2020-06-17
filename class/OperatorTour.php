@@ -81,9 +81,9 @@ class OperatorTour
         $this->link = $link;
     }
 
-  public function setIsPremium($isPremium)
+  public function setIsPremium(bool $isPremium)
     {
-
+    
         $this->isPremium = $isPremium;
 
     }

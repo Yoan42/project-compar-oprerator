@@ -80,9 +80,24 @@
   justify-content: center;
 }
 
-/*************** ADMIN ****************/
 
-.admin-link {
-  display: flex;
-  justify-content: center;
+/******************* page Connexion *******************/
+
+h4 {
+    color: rgb(68, 68, 68);
+    font-family: 'Comfortaa', cursive;
+}
+
+/******************* page Connexion *******************/
+
+h3, h5 {
+  color: rgb(68, 68, 68);
+  font-family: 'Comfortaa', cursive;
+  padding: 15px;
+}
+
+.op1, .op2 {
+  text-align: center;
+  width: 300px;
+  margin: 10px;
 }

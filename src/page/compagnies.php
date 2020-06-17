@@ -18,7 +18,7 @@ $operatorTour = new Manager($db);
                 <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
                 <div class="card-body" >
                     <h5 class="card-title"><?=$operatorTourList[$i]->getName()?></h5>
-                    <p class="card-text">Some quick example text to build.</p>
+                    <p class="card-text">Agence de voyage</p>
                     <a href="<?=$operatorTourList[$i]->getLink()?>" class="btn btn-primary">Site web</a>  
                     <form action="" method="post">
                         <input type="text" name="delete" value="<?= $operatorTourList[$i]->getId() ?>"  style="display: none;">

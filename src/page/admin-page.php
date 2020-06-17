@@ -1,5 +1,6 @@
 <?php include "src/partials/meta-link.php" ?>
 <?php include "src/partials/header-admin.php" ?>
+
 <main class='container d-flex justify-content-center flex-column pt-5 border-0 '>
 
 <?php
@@ -11,10 +12,10 @@ $operatorTour = new Manager($db);
     if (isset($_POST['OperatorName']) && isset($_POST['OperatorLink']) ) {
 
         if(!empty($_POST['OperatorPremium'])) {
-            $_POST['OperatorPremium'] = 0;
+            $_POST['OperatorPremium'] = true;
         }
         else {
-            $_POST['OperatorPremium'] = 1;
+            $_POST['OperatorPremium'] = false;
         }
         $compagnie = new OperatorTour([  "name" => $_POST['OperatorName'], 
                                     "link"=>$_POST['OperatorLink'], 
@@ -23,21 +24,21 @@ $operatorTour = new Manager($db);
         $operatorTour->addOperatorTour($compagnie);
     }
 ?> 
-    <?php if (isset($_POST['compagnies'])) {?>
     <div class="compagnies-content text-center">
         
         <h3>Ajouter une compagnie :</h3>
         <form action="" method="Post">
-            <label for="OperatorName">Nom : </label>
-            <input type="text" name="OperatorName" id="OperatorName" placeholder="Nom de l'operateur"><br> 
-            <label for="OperatorLink">Lien du site de l'opérateur : </label>
-            <input type="url" name="OperatorLink" id="OperatorLink" placeholder="Lien vers l'operateur"> <br>
-            <label for="OperatorLink">Premium : </label>
-            <input type="checkbox" name="OperatorPremium"  id="OperatorPremium"> <br>
-            <button type="submit">Ajouter</button>
+
+            <input class="op1" type="text name="OperatorName" id="OperatorName" placeholder="Nom de l'operateur">
+            <br> 
+            <input class="op2" type="url" name="OperatorLink" id="OperatorLink" placeholder="Lien vers l'operateur">
+            <br>
+            <h5>⭐ Premium</h3>
+            <input class="premium1" type="checkbox" name="OperatorPremium"  id="OperatorPremium">
+            <br>
+            <button type="submit" class="btn btn-outline-primary">Ajouter</button>
         </form>
-
-
+        
     </div>
 
     <!-- Card -->
@@ -51,35 +52,23 @@ $operatorTour = new Manager($db);
                 <div class="card-body" >
                     <h5 class="card-title"><?=$operatorTourList[$i]->getName()?></h5>
                     <p class="card-text">Some quick example text to build.</p>
-                    <a href="<?=$operatorTourList[$i]->getLink()?>" class="btn btn-primary">Site web</a>  
+                    <a href="<?=$operatorTourList[$i]->getLink()?>" class="btn btn-primary">Go somewhere</a>  
                     <form action="" method="post">
                         <input type="text" name="delete" value="<?= $operatorTourList[$i]->getId() ?>"  style="display: none;">
-                        <button type="submit" class="btn btn-danger">Supprimer cette Compagnie</button>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
-
                 </div>
             </div>
         <?php }?>
         
-                        <?php if (isset($_POST['delete'])){
-                            var_dump($operatorTour->deleteOperatorTour($_POST['delete'])); 
-                        }?>
+
     </div>
-    <?php    }elseif (isset($_POST['destination'])) {?>
-        <div class="destination-content">
-            <h3>Ajouter une destination :</h3>
-            <form action="">
-                <select name="" id="">
-                    <option value="">option1</option>
-                    <option value="">option2</option>
-                </select>
-            </form>
-        </div>
-    <?php    } else {?>
-        
-        Page Administrateur !
-        
-    <?php } ?>
+    <?php 
+    
+    if (isset($_POST['delete'])){
+        echo $_POST['delete'];
+        $operatorTour->deleteOperatorTour($_POST['delete']); 
+    }?>
 </main>
 <?php include "src/partials/footer.php" ?>
 <?php include "controler/debug-info.php"?>

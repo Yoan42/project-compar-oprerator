@@ -13,8 +13,9 @@
 
     <div class="covid">
         <p>
-            <img class="covid19" src="../../asset/img/covid.png">
+            <img class="covid19" src="./asset/img/covid.png">
             COVID-19
+            <br>
             <br>
             Guide de voyage
             <br>
@@ -23,19 +24,15 @@
             prendre les meilleures décisions de voyage.</p>
     </div>
     <div class="guide">
-        <a class="btn btn-primary" href="#" role="button">Voir le guide</a>
+        <a class="btn btn-primary" href="https://www.kayak.fr/c/coronavirus-travel/" role="button">Voir le guide</a>
     </div>
 
     <div class="nav-selection">
         <div class="selection">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Destinations</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Villes</a>
-                    <a class="dropdown-item" href="#">...</a>
-                </div>
-                <input type="number" placeholder="Tarif">
+                <input type="text" placeholder="Opperateurs">
+                <input type="text" placeholder="Destinations">
+                <input type="number" placeholder="Tarifs">
+                <a class="btn btn-primary" href="" role="button">Valider</a>
             </div>
         </div>
     </div>
@@ -49,8 +46,8 @@
                 <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">⭐ Premium</h5>
-                    <p class="card-text">Some quick example text to build.</p>
-                    <a href="" class="btn btn-primary">Go somewhere</a>  
+                    <p class="card-text">Opperateur Premium</p>
+                    <a href="" class="btn btn-primary">Site web</a>  
                 </div>
             </div>
         </div>
@@ -58,18 +55,20 @@
     </div>
 
     <div class="destinations-cards">
-
-    <?php  for ($i=0; $i <12; $i++):?>
-
-        <div class="card text-center" style="width: 20rem;">
-            <div class="col-12">
+        <?php  for ($i=0; $i < $destination->countOperator(); $i++){
+            $operatorTourList = $destination->getListOperatorTour();
+            
+           ?>
+            <div class="card text-center " style="width: 20rem;">
                 <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
+                <div class="card-body" >
+                    <h5 class="card-title"><?=$destination[$i]->getLocation()?></h5>
                     <p class="card-text">Some quick example text to build.</p>
-                    <a href="" class="btn btn-primary">Go somewhere</a>  
+                    <a href="<?=$destination[$i]->getLink()?>" class="btn btn-primary">Site web</a>  
+                    <form action="" method="post">
+                        <input type="text" name="delete" value="<?= $destination[$i]->getId() ?>"  style="display: none;">
+                    </form>
                 </div>
             </div>
-        </div>
-        <?php endfor ;?>
+        <?php }?>
     </div>
