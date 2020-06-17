@@ -1,9 +1,5 @@
 <?php
-
  $destination = new Manager($db);
- echo '<br>';
-     $test =$destination->getOperatorTour(1);
-
 ?>
 
     <div class="text-destinations">
@@ -37,12 +33,12 @@
         </div>
     </div>
 
-    <div class="premium-cards">
+    <div class="premium-cards row">
 
     <?php  for ($i=0; $i <3; $i++):?>
 
-        <div class="card text-center" style="width: 20rem;">
-            <div class="col-12">
+        <div class="card text-center col-lg-3 m-2" style="width: 20rem;">
+            <div class="">
                 <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">⭐ Premium</h5>
@@ -54,21 +50,27 @@
         <?php endfor ;?>
     </div>
 
-    <div class="destinations-cards">
-        <?php  for ($i=0; $i < $destination->countOperator(); $i++){
-            $operatorTourList = $destination->getListOperatorTour();
-            
-           ?>
-            <div class="card text-center " style="width: 20rem;">
+    <div class="destinations-cards row">
+
+    <?php for ($i=0; $i <$destination->countDestination() ; $i++) { 
+    
+        $destinations = $destination->getListDestination();
+        
+        $operator= $destination->getOperatorTour(intval($destinations[$i]->getIdTourOperator()))
+    ?>
+ 
+        <div class="card text-center col-lg-3 m-4" style="width: 20rem;">
+            <div class="">
+                <h5 class="card-text"><?=$operator->getName()?></h5>
+                <hr>
                 <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
-                <div class="card-body" >
-                    <h5 class="card-title"><?=$destination[$i]->getLocation()?></h5>
-                    <p class="card-text">Some quick example text to build.</p>
-                    <a href="<?=$destination[$i]->getLink()?>" class="btn btn-primary">Site web</a>  
-                    <form action="" method="post">
-                        <input type="text" name="delete" value="<?= $destination[$i]->getId() ?>"  style="display: none;">
-                    </form>
+                <div class="card-body">
+                    <h5 class="card-title"><?=$destinations[$i]->getLocation()?></h5>
+                    <p class="card-text"><?=$destinations[$i]->getPrice()?>€</p>
+                    
+                    <a href="?comparateur=" class="btn btn-primary">Site web</a>  
                 </div>
             </div>
-        <?php }?>
+        </div>
+    <?php  }?>
     </div>

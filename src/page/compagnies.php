@@ -9,16 +9,16 @@ $operatorTour = new Manager($db);
         <p>Découvrez nos compagnies les plus populaires</p>
     </div>
 
-    <div class="container-cards">
+    <div class="container-cards row">
         <?php  for ($i=0; $i < $operatorTour->countOperator(); $i++){
             $operatorTourList = $operatorTour->getListOperatorTour();
             
            ?>
-            <div class="card text-center " style="width: 20rem;">
+            <div class="card text-center col-lg-3 m-2" style="width: 20rem;">
                 <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
-                <div class="card-body" >
+                <div class="card-body">
                     <h5 class="card-title"><?=$operatorTourList[$i]->getName()?></h5>
-                    <p class="card-text">Agence de voyage</p>
+                    <p class="card-text">Some quick example text to build.</p>
                     <a href="<?=$operatorTourList[$i]->getLink()?>" class="btn btn-primary">Site web</a>  
                     <form action="" method="post">
                         <input type="text" name="delete" value="<?= $operatorTourList[$i]->getId() ?>"  style="display: none;">

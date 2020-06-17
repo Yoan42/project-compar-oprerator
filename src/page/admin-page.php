@@ -11,8 +11,7 @@ $operatorTour = new Manager($db);
  <?php 
     if (isset($_POST['OperatorName']) && isset($_POST['OperatorLink']) ) {
 
-        if(!empty($_POST['OperatorPremium'])) {
-            $_POST['OperatorPremium'] = true;
+        if(isset($_POST['OperatorPremium'])) {
         }
         else {
             $_POST['OperatorPremium'] = false;
@@ -21,6 +20,7 @@ $operatorTour = new Manager($db);
                                     "link"=>$_POST['OperatorLink'], 
                                     "grade"=>0 , 
                                     "isPremium" => $_POST['OperatorPremium']]);
+                                    
         $operatorTour->addOperatorTour($compagnie);
     }
 ?> 
@@ -29,11 +29,11 @@ $operatorTour = new Manager($db);
         <h3>Ajouter une compagnie :</h3>
         <form action="" method="Post">
 
-            <input class="op1" type="text name="OperatorName" id="OperatorName" placeholder="Nom de l'operateur">
+            <input class="op1" type="text" name="OperatorName" id="OperatorName" placeholder="Nom de l'operateur">
             <br> 
             <input class="op2" type="url" name="OperatorLink" id="OperatorLink" placeholder="Lien vers l'operateur">
             <br>
-            <h5>⭐ Premium</h3>
+            <h5>⭐ Premium</h5>
             <input class="premium1" type="checkbox" name="OperatorPremium"  id="OperatorPremium">
             <br>
             <button type="submit" class="btn btn-outline-primary">Ajouter</button>
@@ -57,6 +57,7 @@ $operatorTour = new Manager($db);
                         <input type="text" name="delete" value="<?= $operatorTourList[$i]->getId() ?>"  style="display: none;">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
+
                 </div>
             </div>
         <?php }?>

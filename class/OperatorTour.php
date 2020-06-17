@@ -83,9 +83,7 @@ class OperatorTour
 
   public function setIsPremium(bool $isPremium)
     {
-    
         $this->isPremium = $isPremium;
-
     }
 
 

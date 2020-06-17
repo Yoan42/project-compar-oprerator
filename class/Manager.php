@@ -9,14 +9,10 @@ class Manager
     $this->setDb($db);
   }
   
-
-
 //----------------- CREATE -------------//  
 
-
-
-//NEW TOUR OPERATOR
   public function addOperatorTour($operatorTour)
+  //NEW TOUR OPERATOR
   {
     $q = $this->db->prepare('INSERT INTO tour_operators(name , grade, link, is_premium ) VALUES(:name , :grade , :link, :is_premium)');
     $q->bindValue(':name', $operatorTour->getName());
@@ -34,9 +30,8 @@ class Manager
     ]);
   }
 
-
-//NEW DESTINATION
   public function addDestination($destination)
+  //NEW DESTINATION
   {
     $q = $this->db->prepare('INSERT INTO destinations(location , price, id_tour_operator ) VALUES(:location , :price , :id_tour_operator)');
     $q->bindValue(':location', $destination->getLocation());
@@ -45,41 +40,40 @@ class Manager
     $q->execute();
     
     $destination->hydrate([
-      'id' => $this->db->lastInsertId(),
+      'id' => $this->db->lastInsertId()
     ]);
   }
 
 // --------------- COUNT ------------------//
+
   public function countOperator()
+  //TOUR OPERATOR
   {
-//TOUR OPERATOR
     return $this->db->query('SELECT COUNT(*) FROM tour_operators')->fetchColumn();
   }  
   public function countDestination()
+  //DESTINATION
   {
-//DESTINATION
     return $this->db->query('SELECT COUNT(*) FROM destinations')->fetchColumn();
   }
   
 // --------------- DELETE ------------------//
 
-//TOUR OPERATOR
-
   public function deleteOperatorTour($operatorTourId)
+  //TOUR OPERATOR
   {
     $this->db->exec('DELETE FROM tour_operators WHERE id = '.$operatorTourId);
   }
-//DESTINATION
+  //DESTINATION
   public function deleteDestination($destinationId)
   {
     $this->db->exec('DELETE FROM destinations WHERE id = '.$destinationId);
   }
 
-
 // --------------- SELECT ------------------//
 
-//TOUR OPERATOR
   public function getOperatorTour($operatorTourInfo)
+  //TOUR OPERATOR 
   {
     if (is_int($operatorTourInfo))
     {
@@ -100,13 +94,13 @@ class Manager
     }
   }
 
-//DESTINATION
   public function getDestination($destinationInfo)
+  //DESTINATION
   {
     if (is_int($destinationInfo))
      
     {
-      $q = $this->db->query('SELECT id, location, price, id_tour_operator FROM destinations WHERE id_tour_operator = '.$destinationInfo);
+      $q = $this->db->query('SELECT * FROM destinations WHERE id_tour_operator = '.$destinationInfo);
       $donnees = $q->fetch(PDO::FETCH_ASSOC);
         return new Destination($donnees);
 
@@ -125,13 +119,14 @@ class Manager
   }
 
 // --------------- SELECT LIST ------------------//
-//TOUR OPERATOR
+
   public function getListOperatorTour()
+  //TOUR OPERATOR
   {
     
     $operatorTour = [];
 
-    $q = $this->db->prepare('SELECT id, name, grade, link, is_premium FROM tour_operators  ORDER BY name');
+    $q = $this->db->prepare('SELECT * FROM tour_operators  ORDER BY name');
     $q->execute();
     $donnees = $q->fetchAll(PDO::FETCH_ASSOC);
     for ($i=0; $i <count($donnees) ; $i++) { 
@@ -141,14 +136,31 @@ class Manager
     return $operatorTour;
   }
 
-//DESTINATION
-  public function getListDestination($location)
+  public function getListDestination()
+  //DESTINATION
   {
 
     $destinationList = [];
 
-    $q = $this->db->prepare('SELECT * FROM destinations WHERE id_tour_operator = :id_tour_operator');
-    $q->execute([':id_tour_operator' => $location]);
+    $q = $this->db->prepare('SELECT * FROM destinations ORDER BY location');
+    $q->execute();
+    $donnees = $q->fetchAll(PDO::FETCH_ASSOC);
+    for ($i=0; $i <count($donnees) ; $i++) { 
+        array_push ($destinationList, new Destination($donnees[$i]));
+    }
+    
+    return $destinationList;
+
+
+  }
+  public function getListLocation()
+  //DESTINATION
+  {
+
+    $destinationList = [];
+
+    $q = $this->db->prepare('SELECT destinations.location FROM destinations INNER JOIN location ON location = location GROUP BY location');
+    $q->execute();
     $donnees = $q->fetchAll(PDO::FETCH_ASSOC);
     for ($i=0; $i <count($donnees) ; $i++) { 
         array_push ($destinationList, new Destination($donnees[$i]));
@@ -160,11 +172,11 @@ class Manager
   }
 
 
-
 // --------------- UPDATE ------------------//
 
-//TOUR OPERATOR
+
   public function updateOperatorTour($operatorTour)
+  //TOUR OPERATOR
   {
     $q = $this->db->prepare('UPDATE tour_operators SET name = :name, grade = :grade, link = :link, is_premium = :is_premium WHERE id = :id');
     
@@ -178,19 +190,20 @@ class Manager
     $q->execute();
   }
   
-//DESTINATION
-public function updateDestination($destination)
-{
-  $q = $this->db->prepare('UPDATE destinations SET location = :location, price = :price, id_tour_operator = :id_tour_operator WHERE id = :id');
-  
 
-  $q->bindValue(':location', $destination->getName(), PDO::PARAM_INT);
-  $q->bindValue(':id', $destination->getId(), PDO::PARAM_INT);
-  $q->bindValue(':price', $destination->getGrade(), PDO::PARAM_INT);
-  $q->bindValue(':id_tour_operator', $destination->getLink(), PDO::PARAM_INT);
+  public function updateDestination($destination)
+  //DESTINATION
+  {
+    $q = $this->db->prepare('UPDATE destinations SET location = :location, price = :price, id_tour_operator = :id_tour_operator WHERE id = :id');
 
-  $q->execute();
-}
+
+    $q->bindValue(':location', $destination->getName(), PDO::PARAM_INT);
+    $q->bindValue(':id', $destination->getId(), PDO::PARAM_INT);
+    $q->bindValue(':price', $destination->getGrade(), PDO::PARAM_INT);
+    $q->bindValue(':id_tour_operator', $destination->getLink(), PDO::PARAM_INT);
+
+    $q->execute();
+  }
 
   //Setter DB
   public function setDb(PDO $db)

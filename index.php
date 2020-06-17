@@ -1,4 +1,6 @@
 
+
+
 <?php
 
 // connexion à la DB
@@ -13,5 +15,8 @@ if (isset($_GET['admin'])) {
 }else{
     include "./src/page/home.php";
 }
+
+
+
 
 ?>
