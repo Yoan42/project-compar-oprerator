@@ -1,15 +1,35 @@
-<div class="text-home">
-    <h1>
-        Trouvez votre coin de paradis avec
-        <br>
-        <br>
-        <img class="logo" src="./asset/img/logo.png">
-    </h1>
-</div>
 
-<div class="redirection">
-    <a class="btn btn-primary" href="?Destination=" role="button">Comparez tous les voyages</a>
-</div>
+    <div class="text-home">
+        <h1>
+            Trouvez votre coin de paradis avec
+            <br>
+            <br>
+            <img class="logo" src="./asset/img/logo.png">
+        </h1>
+    </div>
+
+    <div class="redirection">
+        <a class="btn btn-primary" href="?Destination=" role="button">Comparez tous les voyages</a>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <p>Les voyages recomandés</p>
+                <a href="?Destination="><img src="asset/img/img-reco.jpg"></a>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <p>Nos destinations</p>
+                <a href="?Destination="><img src="asset/img/img_dest.jpg"></a>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
 
 <div class="carousel-home">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -37,24 +57,6 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
-</div>
-
-
-
-<div class="row">
-    <div class="column">
-        <div class="card">
-            <p>Les voyages recomandés</p>
-            <a href="?Destination="><img src="asset/img/img-reco.jpg"></a>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            <p>Nos destinations</p>
-            <a href="?Destination="><img src="asset/img/img_dest.jpg"></a>
-        </div>
     </div>
 </div>
 

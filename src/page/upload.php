@@ -1,6 +1,6 @@
 <?php
 
-include 'DB-connection.php';
+include '../../controler/upload.php';
 $statusMsg = '';
 
 

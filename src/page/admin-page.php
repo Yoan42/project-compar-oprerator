@@ -1,6 +1,7 @@
 <?php include "src/partials/meta-link.php" ?>
 <?php include "src/partials/header-admin.php" ?>
 
+
 <main class='container d-flex justify-content-center flex-column pt-5 border-0 '>
 
 <?php
@@ -36,33 +37,34 @@ $operatorTour = new Manager($db);
             <h5>⭐ Premium</h5>
             <input class="premium1" type="checkbox" name="OperatorPremium"  id="OperatorPremium">
             <br>
-            <button type="submit" class="btn btn-outline-primary">Ajouter</button>
-        </form>
-        
+            <h3>Envoi d'une image</h3>
+            <input type="file" name="file">
+                <br>
+                <button type="submit" class="btn btn-outline-primary">Ajouter</button>
+            </form>
     </div>
 
     <!-- Card -->
     <div class="container-cards">
         <?php  for ($i=0; $i < $operatorTour->countOperator(); $i++){
             $operatorTourList = $operatorTour->getListOperatorTour();
-            
-           ?>
+        ?>
+
+      
             <div class="card text-center " style="width: 20rem;">
                 <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
                 <div class="card-body" >
                     <h5 class="card-title"><?=$operatorTourList[$i]->getName()?></h5>
+                    <img class="card-img-top" src="<?=$imageURL;?>" alt="Card image cap">
                     <p class="card-text">Some quick example text to build.</p>
                     <a href="<?=$operatorTourList[$i]->getLink()?>" class="btn btn-primary">Go somewhere</a>  
                     <form action="" method="post">
                         <input type="text" name="delete" value="<?= $operatorTourList[$i]->getId() ?>"  style="display: none;">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
-
                 </div>
             </div>
-        <?php }?>
-        
-
+        <?php }?>  
     </div>
     <?php 
     

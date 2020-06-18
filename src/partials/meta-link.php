@@ -13,5 +13,7 @@
     <title>EasyTrip</title>
 </head>
 <body>
-
-    <img class="img-home" src="./asset/img/img-home.jpg">
+     <picture>
+        <source media="(max-width: 1000px)" srcset="./asset/img/img-home1.jpg">
+        <img src="./asset/img/img-home.jpg">
+    </picture>
