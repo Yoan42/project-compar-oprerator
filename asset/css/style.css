@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(228, 228, 228, 0.322);
+  background-color: rgb(247, 247, 247);
 }
 .img-home {
   max-width: 100%;
@@ -65,11 +65,12 @@ body {
   box-shadow: 0 4px 10px 0 rgba(70, 70, 70, 0.534);
   padding: 10px;
   text-align: center;
-  background-color: rgba(240, 240, 240, 0.541);
+  background-color: rgba(207, 207, 207, 0.637);
   font-family: 'Comfortaa', cursive;
   transition: 0.5;
   color: rgb(68, 68, 68);
   font-size: 20px;
+  border: 0px;
   
 }
 img {
@@ -92,6 +93,10 @@ display: flex;
 justify-content: center;
 }
 
+.btn.btn-primary.btn-lg {
+  color: white;
+  font-family: 'Comfortaa', cursive;
+}
 
 /******************* page Connexion *******************/
 
@@ -145,4 +150,33 @@ margin: 10px;
   border-radius: 8px;
 }
 
+/******************* pub *******************/
 
+.pub-premium {
+  display: flex;
+  justify-content: center;
+}
+
+.card-pub {
+  border: solid rgba(0, 0, 255, 0.658) 3px;
+  margin: 20px;
+  border-radius: 15px;
+}
+
+.text-pub {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(68, 68, 68);
+  font-family: 'Comfortaa', cursive;
+}
+
+.pub-link {
+  text-align: center;
+}
+
+p.card-text {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  font-family: 'Comfortaa', cursive;
+}

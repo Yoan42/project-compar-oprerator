@@ -9,25 +9,31 @@
     </div>
 
     <div class="redirection">
-        <a class="btn btn-primary" href="?Destination=" role="button">Comparez tous les voyages</a>
+        <a <button type="button" class="btn btn-primary btn-lg">Comparez tous les voyages</button></a>
     </div>
 
-    <div class="row">
-        <div class="column">
+    <div class="row justify-content-center m-5">
+        <div class="column-4 p-2">
             <div class="card">
                 <p>Les voyages recomandés</p>
                 <a href="?Destination="><img src="asset/img/img-reco.jpg"></a>
             </div>
         </div>
-
-        <div class="column">
+        
+        <div class="column-4 p-2">
             <div class="card">
                 <p>Nos destinations</p>
                 <a href="?Destination="><img src="asset/img/img_dest.jpg"></a>
             </div>
         </div>
-    </div>
 
+        <div class="column-4 p-2">
+            <div class="card">
+                <p>Nos compagnies</p>
+                <a href="?Compagnies="><img src="asset/img/img-compagnies.jpg"></a>
+            </div>
+        </div>
+    </div>
 
     <br>
 

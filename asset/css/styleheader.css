@@ -14,7 +14,10 @@
     border: solid blue 2px;
 }
 .show {
-   background-color:  rgba(0,0,0,0.3);
+   background-color:  rgba(0, 0, 0, 0.74);
+   font-family: 'Comfortaa', cursive;
+   border-radius: 5px;
+
 }
 a.navbar-brand {
     font-size: 18px !important;

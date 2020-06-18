@@ -29,7 +29,6 @@ $operatorTour = new Manager($db);
         
         <h3>Ajouter une compagnie :</h3>
         <form action="" method="Post">
-
             <input class="op1" type="text" name="OperatorName" id="OperatorName" placeholder="Nom de l'operateur">
             <br> 
             <input class="op2" type="url" name="OperatorLink" id="OperatorLink" placeholder="Lien vers l'operateur">
@@ -39,33 +38,34 @@ $operatorTour = new Manager($db);
             <br>
             <h3>Envoi d'une image</h3>
             <input type="file" name="file">
-                <br>
-                <button type="submit" class="btn btn-outline-primary">Ajouter</button>
-            </form>
+            <br>
+            <button type="submit" class="btn btn-outline-primary">Ajouter</button>
+        </form>
     </div>
 
-    <!-- Card -->
-    <div class="container-cards">
-        <?php  for ($i=0; $i < $operatorTour->countOperator(); $i++){
-            $operatorTourList = $operatorTour->getListOperatorTour();
-        ?>
+    
+        <div class="container-cards">
+            <?php  for ($i=0; $i < $operatorTour->countOperator(); $i++){
+                $operatorTourList = $operatorTour->getListOperatorTour();
+            ?>
 
-      
-            <div class="card text-center " style="width: 20rem;">
-                <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
-                <div class="card-body" >
-                    <h5 class="card-title"><?=$operatorTourList[$i]->getName()?></h5>
-                    <img class="card-img-top" src="<?=$imageURL;?>" alt="Card image cap">
-                    <p class="card-text">Some quick example text to build.</p>
-                    <a href="<?=$operatorTourList[$i]->getLink()?>" class="btn btn-primary">Go somewhere</a>  
-                    <form action="" method="post">
-                        <input type="text" name="delete" value="<?= $operatorTourList[$i]->getId() ?>"  style="display: none;">
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
+                <div class="card text-center col-lg-4 m-2" style="width: 20rem;">
+                    <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
+                    <div class="card-body" >
+                        <h5 class="card-title"><?=$operatorTourList[$i]->getName()?></h5>
+                        <img class="card-img-top" src="<?=$imageURL;?>" alt="Card image cap">
+                        <p class="card-text">Some quick example text to build.</p>
+                        <a href="<?=$operatorTourList[$i]->getLink()?>" class="btn btn-primary">Site web</a>
+                        <form action="" method="post">
+                            <br>
+                            <input type="text" name="delete" value="<?= $operatorTourList[$i]->getId() ?>"  style="display: none;">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        <?php }?>  
-    </div>
+            <?php }?>  
+        </div>
+
     <?php 
     
     if (isset($_POST['delete'])){

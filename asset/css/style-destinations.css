@@ -35,8 +35,8 @@
     grid-gap: 80px;
     padding: 60px;
     margin: 50px;
-    border: double 2px rgba(157, 255, 0, 0.788);
-    background-color: rgba(187, 187, 187, 0.432);
+    border: double 2px yellow;
+    background-color: rgba(219, 219, 219, 0.432);
     border-radius: 6px;
 }
 
