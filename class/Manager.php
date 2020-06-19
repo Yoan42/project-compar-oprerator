@@ -51,6 +51,10 @@ class Manager
   {
     return $this->db->query('SELECT COUNT(*) FROM tour_operators')->fetchColumn();
   }  
+  public function countOperatorPremium()
+  {
+    return $this->db->query('SELECT COUNT(*) FROM tour_operators WHERE is_premium = 1')->fetchColumn();
+  }  
   public function countDestination()
   //DESTINATION
   {
@@ -77,15 +81,14 @@ class Manager
   {
     if (is_int($operatorTourInfo))
     {
-    $q = $this->db->query('SELECT id, name, grade, link, is_premium FROM tour_operators WHERE id = '.$operatorTourInfo);
+    $q = $this->db->query('SELECT * FROM tour_operators WHERE id = '.$operatorTourInfo);
     $donnees = $q->fetch(PDO::FETCH_ASSOC);
-
         return new OperatorTour($donnees);
   
     }
     else
     {
-    $q = $this->db->prepare('SELECT  id, name, grade, link, is_premium FROM tour_operators WHERE name = :name');
+    $q = $this->db->prepare('SELECT  * FROM tour_operators WHERE name = :name');
     $q->execute([':name' => $operatorTourInfo]);
     $donnees = $q->fetch(PDO::FETCH_ASSOC);
 
@@ -107,14 +110,15 @@ class Manager
     }
     else
     {
-        
-      $q = $this->db->prepare('SELECT  id, location, price, id_tour_operator FROM destinations WHERE location = :location');
+      $destinations =[];
+      $q = $this->db->prepare("SELECT * FROM destinations WHERE location = :location");
       $q->execute([':location' => $destinationInfo]);
-      $donnees = $q->fetch(PDO::FETCH_ASSOC);
+      $donnees = $q->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($donnees as $key ) {
+        array_push($destinations, new Destination($key)); 
+      }
+      return $destinations;
         
-        return new Destination($donnees); 
-
-
     }
   }
 
@@ -178,36 +182,79 @@ class Manager
   public function updateOperatorTour($operatorTour)
   //TOUR OPERATOR
   {
-    $q = $this->db->prepare('UPDATE tour_operators SET name = :name, grade = :grade, link = :link, is_premium = :is_premium WHERE id = :id');
+    $q = $this->db->prepare('UPDATE tour_operators SET name = :name, link = :link, is_premium = :is_premium WHERE id ='.$operatorTour->getId());
     
-
-    $q->bindValue(':name', $operatorTour->getName(), PDO::PARAM_INT);
-    $q->bindValue(':id', $operatorTour->getId(), PDO::PARAM_INT);
-    $q->bindValue(':grade', $operatorTour->getGrade(), PDO::PARAM_INT);
-    $q->bindValue(':link', $operatorTour->getLink(), PDO::PARAM_INT);
-    $q->bindValue(':is_premium', $operatorTour->getIsPremium(), PDO::PARAM_INT);
-
+    $q->bindValue(':name', $operatorTour->getName());
+    $q->bindValue(':link', $operatorTour->getLink());
+    $q->bindValue(':is_premium', $operatorTour->getIsPremium());
     $q->execute();
+    echo($operatorTour->getName().' A bien été modifié');
   }
   
 
   public function updateDestination($destination)
   //DESTINATION
   {
-    $q = $this->db->prepare('UPDATE destinations SET location = :location, price = :price, id_tour_operator = :id_tour_operator WHERE id = :id');
+    $q = $this->db->prepare('UPDATE destinations SET location = :location, price = :price, id_tour_operator = :id_tour_operator WHERE id = '.$destination->getId());
 
 
-    $q->bindValue(':location', $destination->getName(), PDO::PARAM_INT);
-    $q->bindValue(':id', $destination->getId(), PDO::PARAM_INT);
-    $q->bindValue(':price', $destination->getGrade(), PDO::PARAM_INT);
-    $q->bindValue(':id_tour_operator', $destination->getLink(), PDO::PARAM_INT);
+    $q->bindValue(':location', $destination->getLocation());
+    $q->bindValue(':price', $destination->getPrice(), PDO::PARAM_INT);
+    $q->bindValue(':id_tour_operator', $destination->getIdTourOperator(), PDO::PARAM_INT);
 
     $q->execute();
+    echo($destination->getLocation().' A bien été modifié');
   }
 
   //Setter DB
   public function setDb(PDO $db)
   {
     $this->db = $db;
+  }
+
+
+
+//---------------------------- Review ----------------------//
+
+
+
+  public function getListReview()
+
+  {
+    $reviewList = [];
+    $q = $this->db->query('SELECT  * FROM reviews ORDER BY id DESC');
+    $donnees = $q->fetchAll(PDO::FETCH_ASSOC);
+    for ($i=0; $i < count($donnees) ; $i++) { 
+      array_push ($reviewList, new Review($donnees[$i]));
+
+    }
+      return $reviewList;
+
+  }
+  public function addReview($review)
+
+  {
+    $q = $this->db->prepare('INSERT INTO reviews( message, author, id_tour_operator ) VALUES(:message , :author , :id_tour_operator)');
+    $q->bindValue(':message', $review->getMessage());
+    $q->bindValue(':author', $review->getAuthor());
+    $q->bindValue(':id_tour_operator', $review->getIdTourOperator());
+    $q->execute();
+    
+    $review->hydrate([
+      'id' => $this->db->lastInsertId(),
+    ]);
+  }
+  public function getReview($id)
+
+  {
+    $reviewList = [];
+    $q = $this->db->query('SELECT  * FROM reviews WHERE id_tour_operator ='.$id.' ORDER BY id DESC');
+    $donnees = $q->fetchAll(PDO::FETCH_ASSOC);
+    for ($i=0; $i < count($donnees) ; $i++) { 
+      array_push ($reviewList, new Review($donnees[$i]));
+
+    }
+      return $reviewList;
+
   }
 }

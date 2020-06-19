@@ -14,6 +14,10 @@
             include './src/page/connexion.php';
         }else if (isset($_GET['operatorTour'])) {
             include './src/page/operator-tour.php';
+        }else if (isset($_GET['detailDestination'])) {
+            include './src/page/detailDestination.php';
+        }else if (isset($_GET['idOperator'])) {
+            include './src/page/details-to.php';
         }else{
             include './src/page/LandingPage.php';
         }  

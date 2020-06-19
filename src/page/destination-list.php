@@ -33,49 +33,37 @@
         </div>
     </div>
 
-    <div class="premium-cards row">
-
-    <?php  for ($i=0; $i <3; $i++):?>
-
-        <div class="card text-center col-lg-3 m-2" style="width: 20rem;">
-            <div class="">
-                <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">⭐ Premium</h5>
-                    <p class="card-text">Opperateur Premium</p>
-                    <a href="" class="btn btn-primary">Site web</a>  
-                </div>
-            </div>
-        </div>
-        <?php endfor ;?>
-    </div>
-
     <div class="destinations-cards row">
-
-    <?php for ($i=0; $i <$destination->countDestination() ; $i++) { 
-    
+    <?php $nameCard = [''];
+         for ($i=0; $i <$destination->countDestination() ; $i++) { 
         $destinations = $destination->getListDestination();
-        
-        $operator= $destination->getOperatorTour(intval($destinations[$i]->getIdTourOperator()))
-    ?>
- 
-        <div class="card text-center col-lg-3 m-4" style="width: 20rem;">
-            <div class="">
-                <h5 class="card-text"><?=$operator->getName()?></h5>
-                <hr>
-                <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title"><?=$destinations[$i]->getLocation()?></h5>
-                    <p class="card-text"><?=$destinations[$i]->getPrice()?>€</p>
-                    <div class="rating"><!--
-                    --><a href="#5" title="Donner 5 étoiles">☆</a><!--
-                    --><a href="#4" title="Donner 4 étoiles">☆</a><!--
-                    --><a href="#3" title="Donner 3 étoiles">☆</a><!--
-                    --><a href="#2" title="Donner 2 étoiles">☆</a><!--
-                    --><a href="#1" title="Donner 1 étoile">☆</a>
+        foreach ($nameCard as $key) {
+            if ($key != $destinations[$i]->getLocation()) { ?>
+                <div class="card text-center col-lg-3 m-2" style="width: 20rem;">
+                    <div class="info">
+                        <h5 class="card-text"><?=$destinations[$i]->getLocation()?></h5>
+                        <hr>
+                        <img src="./asset/img/11404_800x480.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <!-- Button envoi detail destination -->
+                            <form action="" method="get">
+                                <button type="submit" class="btn btn-primary"name="detailDestination" value="<?=$destinations[$i]->getLocation()?>">Info Destination</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                
+
+
+        <?php 
+        array_shift($nameCard);
+        array_push($nameCard, $destinations[$i]->getLocation()); 
+        break;
+            }
+        }
+    ?>
+
     <?php  }?>
+
     </div>
