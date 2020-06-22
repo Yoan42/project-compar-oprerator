@@ -6,7 +6,20 @@
             <br>
             <img class="logo" src="./asset/img/logo.png">
         </h1>
+            <div class="text-home">
+        <p>
+        <br>
+            Rechercher un voyage prend souvent du temps. Trouver le site qui propose des voyages qui vous correspondent 
+            n’est déjà pas une étape facile. Nous avons sélectionné pour vous les meilleurs voyagistes et leurs plus beaux circuits 
+            que vous trouverez. 
+            <br>
+            <br>
+            Rapide et facile d’utilisation, il vous propose en 1 clic tous les voyages proposés par 
+            les meilleures agences sur la destination choisie. Fini le temps passé à comparer les circuits et prix d’un 
+            site à l’autre. Vous allez enfin pouvoir organiser votre voyage sereinement ! 
+        </p>
     </div>
+</div>
 
     <div class="redirection">
         <a href="?Destination="><button type="button" class="btn btn-primary btn-lg">Comparez tous les voyages</button></a>
@@ -46,13 +59,13 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="asset/img/img1.jpg" class="d-block">
+                <img src="asset/img/dia2.jpg" class="d-block">
             </div>
             <div class="carousel-item">
-                <img src="asset/img/img2.jpg" class="d-block">
+                <img src="asset/img/dia3.jpg" class="d-block">
             </div>
             <div class="carousel-item">
-                <img src="asset/img/img3.jpg" class="d-block">
+                <img src="asset/img/dia4.jpg" class="d-block">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -64,17 +77,4 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-</div>
-
-<div class="text-home">
-    <p>
-        Rechercher un voyage prend souvent du temps. Trouver le site qui propose des voyages qui vous correspondent 
-        n’est déjà pas une étape facile. Nous avons sélectionné pour vous les meilleurs voyagistes et leurs plus beaux circuits 
-        que vous trouverez. 
-        <br>
-        <br>
-        Rapide et facile d’utilisation, il vous propose en 1 clic tous les voyages proposés par 
-        les meilleures agences sur la destination choisie. Fini le temps passé à comparer les circuits et prix d’un 
-        site à l’autre. Vous allez enfin pouvoir organiser votre voyage sereinement ! 
-    </p>
 </div>

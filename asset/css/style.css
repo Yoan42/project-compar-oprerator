@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(white 50%, rgb(138, 138, 138));
+  background: linear-gradient(white 50%, rgb(179, 179, 179));
   font-family: 'Comfortaa', cursive;
 
 }
@@ -17,9 +17,10 @@ body {
   text-align: center;
   display: flex;
   justify-content: center;
-  margin: 50px 15px 15px 15px;
+  margin: 50px 50px 15px 50px;
   color: rgb(68, 68, 68);
   font-family: 'Comfortaa', cursive;
+  font-weight: 25px;
 }
 
 .text-home p {
@@ -64,7 +65,7 @@ body {
 
 /* Style the counter cards */
 .card {
-  box-shadow: 0 4px 10px 0 rgba(70, 70, 70, 0.534);
+  box-shadow: 0 4px 10px 10px rgba(218, 218, 218, 0.534);
   padding: 5px;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -80,12 +81,10 @@ img {
 }
 .card:hover img {
   max-width: 100%;
-  transform: scale(1.05);
-  transition: 0.9s;
 }
 
 img {
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .carousel-home {
@@ -221,6 +220,6 @@ p.card-text {
 
 .pub-connexion {
   text-align: center;
-  border: solid rgb(102, 255, 0) 2px;
+  border: solid rgb(226, 204, 0) 2px;
   padding: 20px;
 }

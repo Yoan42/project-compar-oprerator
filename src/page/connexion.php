@@ -22,7 +22,6 @@
     </div> 
 </div>
 <hr>
-
 <div class="pub-connexion">
     <h1>⭐ Devenez PREMIUM ⭐</h1>
     <p>Devenez oppérateur Premium pour booster votre visibilité ainsi que vos ventes.
